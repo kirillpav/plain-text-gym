@@ -128,7 +128,7 @@ struct RoutineDetailView: View {
                                 .foregroundColor(.white.opacity(0.6))
                                 .padding()
                         } else {
-                            ForEach(routine.exercises) { exercise in
+                            ForEach(routine.exercises.sorted(by: { $0.order < $1.order })) { exercise in
                                 VStack(alignment: .leading, spacing: 4) {
                                     NavigationLink(destination: ExerciseDetailView(exercise: exercise)) {
                                         ExerciseRowView(exercise: exercise)
@@ -159,7 +159,8 @@ struct RoutineDetailView: View {
     
     private func addExercise() {
         guard !newExerciseName.isEmpty else { return }
-        let exercise = Exercise(name: newExerciseName)
+        let nextOrder = (routine.exercises.map { $0.order }.max() ?? -1) + 1
+        let exercise = Exercise(name: newExerciseName, order: nextOrder)
         exercise.routine = routine
         routine.exercises.append(exercise)
         modelContext.insert(exercise)

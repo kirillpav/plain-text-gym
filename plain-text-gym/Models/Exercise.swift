@@ -14,11 +14,13 @@ final class Exercise {
     var sets: [WorkoutSet]
     var routine: Routine?
     var timestamp: Date
+    var order: Int
     
-    init(name: String, sets: [WorkoutSet] = []) {
+    init(name: String, sets: [WorkoutSet] = [], order: Int = 0) {
         self.name = name
         self.sets = sets
         self.timestamp = Date()
+        self.order = order
     }
 }
 
