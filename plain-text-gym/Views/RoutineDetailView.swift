@@ -44,6 +44,24 @@ struct RoutineDetailView: View {
                     .padding()
                 }
                 
+                // Start workout button
+                HStack {
+                    Spacer()
+                    NavigationLink(destination: ActiveWorkoutView(routine: routine)) {
+                        HStack {
+                            Text("┌─")
+                                .foregroundColor(.white.opacity(0.5))
+                            Text("[START WORKOUT]")
+                                .foregroundColor(.white)
+                            Text("─┐")
+                                .foregroundColor(.white.opacity(0.5))
+                        }
+                        .font(.system(size: 16, design: .monospaced))
+                        .padding(.vertical, 8)
+                    }
+                    Spacer()
+                }
+                
                 Divider()
                     .background(Color.white.opacity(0.3))
                 
@@ -178,11 +196,10 @@ struct ExerciseRowView: View {
                 Text("│")
                     .foregroundColor(.white.opacity(0.5))
                 if exercise.sets.isEmpty {
-                    Text("No sets logged")
+                    Text("No sets configured")
                         .foregroundColor(.white.opacity(0.5))
                 } else {
-                    let completedSets = exercise.sets.filter { $0.isCompleted }.count
-                    Text("\(completedSets)/\(exercise.sets.count) sets completed")
+                    Text("\(exercise.sets.count) sets")
                         .foregroundColor(.white.opacity(0.7))
                 }
                 Spacer()

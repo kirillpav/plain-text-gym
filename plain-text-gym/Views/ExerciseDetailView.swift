@@ -129,6 +129,11 @@ struct ExerciseDetailView: View {
                                 .foregroundColor(.white.opacity(0.6))
                                 .padding()
                         } else {
+                            Text("NOTE: Sets can only be marked complete during an active workout")
+                                .font(.system(size: 12, design: .monospaced))
+                                .foregroundColor(.white.opacity(0.5))
+                                .padding(.bottom, 8)
+                            
                             ForEach(Array(exercise.sets.enumerated()), id: \.element.id) { index, set in
                                 SetRowView(
                                     setNumber: index + 1,
@@ -187,13 +192,11 @@ struct SetRowView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             HStack {
-                Button(action: onToggle) {
-                    HStack(spacing: 4) {
-                        Text(set.isCompleted ? "[x]" : "[ ]")
-                            .foregroundColor(.white)
-                        Text("Set \(setNumber)")
-                            .foregroundColor(.white.opacity(0.8))
-                    }
+                HStack(spacing: 4) {
+                    Text("[ ]")
+                        .foregroundColor(.white.opacity(0.3))
+                    Text("Set \(setNumber)")
+                        .foregroundColor(.white.opacity(0.8))
                 }
                 
                 Spacer()

@@ -15,6 +15,9 @@ struct plain_text_gymApp: App {
             Routine.self,
             Exercise.self,
             WorkoutSet.self,
+            WorkoutSession.self,
+            CompletedExercise.self,
+            CompletedSet.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 

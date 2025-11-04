@@ -10,8 +10,20 @@ import SwiftData
 
 struct ContentView: View {
     var body: some View {
-        NavigationStack {
-            RoutineListView()
+        TabView {
+            NavigationStack {
+                RoutineListView()
+            }
+            .tabItem {
+                Label("Routines", systemImage: "list.bullet")
+            }
+            
+            NavigationStack {
+                WorkoutHistoryView()
+            }
+            .tabItem {
+                Label("History", systemImage: "clock")
+            }
         }
         .preferredColorScheme(.dark)
     }
